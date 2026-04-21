@@ -1,69 +1,125 @@
-<h1>Using Atomic Red Team to activate Events on Splunk</h1>
+# Active Directory Detection Validation with Splunk and Atomic Red Team
 
+![Splunk](https://img.shields.io/badge/SIEM-Splunk-black?logo=splunk)
+![Atomic Red Team](https://img.shields.io/badge/Adversary_Emulation-Atomic_Red_Team-red)
+![MITRE ATT&CK](https://img.shields.io/badge/Framework-MITRE_ATT%26CK-critical)
+![PowerShell](https://img.shields.io/badge/Scripting-PowerShell-5391FE?logo=powershell)
+![VirtualBox](https://img.shields.io/badge/Lab-VirtualBox-183A61?logo=virtualbox)
+![Windows 10](https://img.shields.io/badge/OS-Windows_10-0078D6?logo=windows)
+![Windows Server 2022](https://img.shields.io/badge/OS-Windows_Server_2022-0078D6?logo=windows)
+![Ubuntu Server 22.04](https://img.shields.io/badge/OS-Ubuntu_22.04-E95420?logo=ubuntu)
 
+## Overview
 
-<h2>Description</h2>
-This project utilizes Atomic Red Team's comprehensive library of adversary emulation techniques to simulate real-world cyber threats. By leveraging Atomic Red Team's PowerShell payloads, we aim to activate specific events on Splunk, a leading SIEM platform, by invoking PowerShell commands on target machines. This approach allows us to validate the effectiveness of our detection and response capabilities within Splunk, ensuring our organization is well-prepared to detect and mitigate potential cyber threats.
+This project demonstrates a detection engineering homelab where **Atomic Red Team** was used to simulate adversary behavior and generate **PowerShell-related telemetry** in a Windows-based Active Directory lab. The resulting activity was reviewed in **Splunk** to validate visibility, improve understanding of event generation, and strengthen detection-focused analysis.
 
+Instead of only describing tool usage, this project highlights the workflow of:
 
+- building a multi-system lab
+- emulating attacker behavior with Atomic Red Team
+- mapping activity to **MITRE ATT&CK**
+- reviewing the resulting telemetry in **Splunk**
+- validating that the lab can surface meaningful security events
 
+## Why This Project Matters
 
+This lab demonstrates skills relevant to blue team, SOC, and detection engineering roles:
 
-<br />
+- adversary emulation in a controlled lab
+- MITRE ATT&CK technique mapping
+- PowerShell activity generation and review
+- SIEM analysis in Splunk
+- Windows and Active Directory lab familiarity
+- security documentation and technical reporting
 
+## Lab Environment
 
-<h2>Tools Used</h2>
+### Tools
 
-- <b>Atomic Red Team</b>
-- <b>Mitre Att&ck framework</b>
+- Splunk
+- Atomic Red Team
+- MITRE ATT&CK
+- PowerShell
 
-<h2>Environments Used </h2>
+### Systems
 
-- <b>VirtualBox VM</b>
-- <b>Kali Linux</b>
-- <b>Windows 10</b>
-- <b>Windows Server 22</b>
-- <b>Ubuntu Server 22.04</b>
+- VirtualBox
+- Windows 10
+- Windows Server 2022
+- Ubuntu Server 22.04
+- Kali Linux
 
-<h2>Project walk-through:</h2>
+## Detection Focus
 
-<p align="center">
-Network Diagram: <br/>
-<img src="https://imgur.com/pEdUmkX.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-  
-<h2>Using Mitre Att&ck Framework and Atomic Red Team:</h2>
+This project focused on using **Atomic Red Team** to invoke a PowerShell-based test aligned to:
 
-Our project integrates the MITRE ATT&CK framework and Atomic Red Team methodology to simulate and assess cyber threats. Specifically, we leverage these frameworks to execute PowerShell commands on target systems, mimicking adversary behavior. This approach enables us to comprehensively test our organization's detection and response capabilities against real-world attack scenarios, enhancing our cyber defense posture and resilience.
-  
-<br />
+- **MITRE ATT&CK T1059.001 – PowerShell**
 
-<p align="center">
-Mitre Att&ck framework: <br/>
-<img src="https://imgur.com/W8NQ80l.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-Atomic Red Team: <br/>
-<img src="https://imgur.com/Dv6FAeh.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-Invoke Atomics T1059.001 : <br/>
-<img src="https://imgur.com/gvoZp1C.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-Splunk showing Powershell being used: <br/>
-<img src="https://imgur.com/WQa6etw.png" height="80%" width="80%" alt="Project walk-through"/> 
+The objective was to generate realistic telemetry in the lab and verify that the activity could be identified in Splunk.
 
-  
-</p>
+## Project Workflow
 
+1. Build a multi-VM lab with Windows and supporting infrastructure
+2. Review relevant MITRE ATT&CK techniques
+3. Use Atomic Red Team to execute a PowerShell-based test
+4. Generate security-relevant activity on the target host
+5. Review resulting events and telemetry in Splunk
+6. Document the findings and detection value of the test
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
+## Skills Demonstrated
+
+| Area | Demonstrated Skill |
+|---|---|
+| SIEM Analysis | Investigated PowerShell-related telemetry in Splunk |
+| Detection Engineering | Validated visibility from simulated adversary behavior |
+| Adversary Emulation | Executed Atomic Red Team test cases in a controlled lab |
+| Threat Mapping | Connected test activity to MITRE ATT&CK T1059.001 |
+| Windows Security | Worked with PowerShell-generated security activity |
+| Lab Engineering | Built and tested a multi-machine virtualized environment |
+
+## Screenshots
+
+### Network Diagram
+
+![Network Diagram](images/network-diagram.png)
+
+### MITRE ATT&CK Technique Reference
+
+![MITRE ATT&CK Mapping](images/mitre-attack-mapping.png)
+
+### Atomic Red Team Setup / Technique Review
+
+![Atomic Red Team Overview](images/atomic-red-team-overview.png)
+
+### Invoking Atomic Test T1059.001
+
+![Invoke Atomic T1059.001](images/invoke-atomic-t1059-001.png)
+
+### Splunk Detection View
+
+![Splunk PowerShell Detection](images/splunk-powershell-detection.png)
+
+## Key Takeaways
+
+- Atomic Red Team is effective for generating realistic test activity in a homelab
+- MITRE ATT&CK mapping helps tie lab exercises to real-world adversary behaviors
+- Splunk can be used to validate whether important PowerShell activity is visible and reviewable
+- Detection-focused labs are a strong way to build blue-team and SOC-ready experience
+
+## Future Improvements
+
+- Add Splunk search queries or detection logic used during analysis
+- Expand testing to additional ATT&CK techniques
+- Include Sysmon or Windows event logging enhancements
+- Document false positives and tuning opportunities
+- Add a dedicated detection engineering notes section
+
+## About This Repository
+
+This repository is part of my cybersecurity homelab work focused on:
+
+- SIEM analysis
+- adversary emulation
+- Active Directory security
+- detection validation
+- defensive skill building
